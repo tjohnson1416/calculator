@@ -1,0 +1,15 @@
+#buttons {
+    width:50vw;
+    height: 100vh;
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#buttons > div {
+    width: 100px;
+    height: 100px;
+    border: 1px solid white;
+    background-color: blue;
+
+}
