@@ -33,3 +33,15 @@ function operate(op, a, b){
         return divide(a, b);
     }
 };
+ 
+const numbers = document.querySelectorAll('.numbers');
+const screenInput = document.querySelector('#screen-input');
+let currentScreen = '';
+numbers.forEach(number => {
+    number.addEventListener('click', x => {
+        //console.log('number pushed')
+        screenInput.textContent += number.textContent;
+        currentScreen = screenInput.textContent;
+        console.log(currentScreen);
+    })
+})
