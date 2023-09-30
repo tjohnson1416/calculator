@@ -38,33 +38,29 @@ const numbers = document.querySelectorAll('.numbers');
 const screenInput = document.querySelector('#screen-input');
 let firstArg = '';
 let secondArg = '';
+let selectedOperator = '';
 numbers.forEach(number => {
     number.addEventListener('click', x => {
-        //console.log('number pushed')
-        if (operator == '') {
-            screenInput.textContent += number.textContent;
-            firstArg = screenInput.textContent;
-            console.log(firstArg);
+        if (selectedOperator == ''){
+            firstArg += number.textContent;
+            screenInput.textContent = firstArg;
         }
         else {
-            screenInput.textContent += number.textContent;
-            firstArg = screenInput.textContent;
-            console.log(firstArg);
+            secondArg += number.textContent;
+            screenInput.textContent = secondArg;
+            console.log('2nd')
         }
     });
 });
 
 const operators = document.querySelectorAll('.operators');
-let selectedOperator = '';
 operators.forEach(operator => {
     operator.addEventListener('click', x => {
-        secondArg = screenInput.textContent;
-        if (selectedOperator != '' && firstArg != '' && secondArg != ''){
+        if (selectedOperator != ''){
             firstArg = operate(selectedOperator,parseInt(firstArg),parseInt(secondArg));
+            screenInput.textContent = firstArg;
             secondArg = '';
-            console.log(firstArg);
         }
         selectedOperator = operator.textContent;
-        screenInput.textContent = '';
     })
-})
+});
