@@ -93,14 +93,16 @@ const operators = document.querySelectorAll('.operators');
 const lastNumber = document.querySelector('#last-number');
 operators.forEach(operator => {
     operator.addEventListener('click', x => {
-        if (selectedOperator != ''){
-            firstArg = operate(selectedOperator,parseFloat(firstArg),parseFloat(secondArg));
+        if (firstArg != ''){
+            if (selectedOperator != ''){
+                firstArg = operate(selectedOperator,parseFloat(firstArg),parseFloat(secondArg));
+                screenInput.textContent = operator.textContent;
+                secondArg = '';
+            }
+            selectedOperator = operator.textContent;
+            lastNumber.textContent = firstArg;
             screenInput.textContent = operator.textContent;
-            secondArg = '';
         }
-        selectedOperator = operator.textContent;
-        lastNumber.textContent = firstArg;
-        screenInput.textContent = operator.textContent;
     })
 });
 
