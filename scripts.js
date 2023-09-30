@@ -108,3 +108,15 @@ delButton.addEventListener('click', x => {
         screenInput.textContent = secondArg;
     }
 });
+
+const signs = document.querySelector('#sign');
+signs.addEventListener('click', x => {
+    if (selectedOperator == ''){
+        firstArg = parseInt(firstArg) * -1;
+        screenInput.textContent = firstArg;
+    }
+    else {
+        secondArg = parseInt(secondArg) * -1;
+        screenInput.textContent = secondArg;
+    }
+})

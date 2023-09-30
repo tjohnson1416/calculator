@@ -41,3 +41,7 @@
 .operators {
     background-color: #515151;
 }
+
+#del , #clear , #sign {
+    background-color: #505050;
+}
