@@ -18,6 +18,10 @@ function divide(a, b) {
     return (a / b);
 };
 
+function exponent(a, b) {
+    return a ** b;
+}
+
 function operate(op, a, b){
     //1 is +, 2 is -, 3 is *, 4 is /
     if (op == '+'){
@@ -34,6 +38,9 @@ function operate(op, a, b){
             return 'Ya sure?'
         }
         return divide(a, b);
+    }
+    if (op == '^'){
+        return exponent(a, b);
     }
 };
 
@@ -81,5 +88,23 @@ equals.addEventListener('click', x => {
     else {
         firstArg = operate(selectedOperator,parseInt(firstArg),parseInt(secondArg));
         screenInput.textContent = `ANSWER: ${firstArg}`;
+        selectedOperator = ''
+    }
+});
+
+const clearButton = document.querySelector('#clear');
+clearButton.addEventListener('click', x => {
+    clear();
+});
+
+const delButton = document.querySelector('#del');
+delButton.addEventListener('click', x => {
+    if (selectedOperator == ''){
+        firstArg = firstArg.slice(0,-1);
+        screenInput.textContent = firstArg;
+    }
+    else {
+        secondArg = secondArg.slice(0,-1);
+        screenInput.textContent = secondArg;
     }
 });
