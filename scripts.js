@@ -64,3 +64,14 @@ operators.forEach(operator => {
         selectedOperator = operator.textContent;
     })
 });
+
+const equals = document.querySelector('#equals');
+equals.addEventListener('click', x => {
+    if (secondArg == '') {
+        screenInput.textContent = `ANSWER: ${firstArg}`; 
+    }
+    else {
+        firstArg = operate(selectedOperator,parseInt(firstArg),parseInt(secondArg));
+        screenInput.textContent = `ANSWER: ${firstArg}`;
+    }
+});
