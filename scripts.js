@@ -1,6 +1,6 @@
-let num1 = 0;
-let num2 = 0;
-let operator = undefined;
+let firstArg = '';
+let secondArg = '';
+let selectedOperator = '';
 
 function add(a, b) {
     return (a + b);
@@ -30,15 +30,23 @@ function operate(op, a, b){
         return multiply(a, b);
     }
     if (op == '/'){
+        if (b == 0){
+            return 'Ya sure?'
+        }
         return divide(a, b);
     }
+};
+
+function clear() {
+    firstArg = '';
+    secondArg = '';
+    selectedOperator = '';
+    screenInput.textContent = '';
 };
  
 const numbers = document.querySelectorAll('.numbers');
 const screenInput = document.querySelector('#screen-input');
-let firstArg = '';
-let secondArg = '';
-let selectedOperator = '';
+
 numbers.forEach(number => {
     number.addEventListener('click', x => {
         if (selectedOperator == ''){
