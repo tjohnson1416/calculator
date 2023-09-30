@@ -4,14 +4,16 @@
         <title>Calculator</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="styles.css">
+        <link href="https://fonts.cdnfonts.com/css/calculator" rel="stylesheet">
     </head>
     <body>
         <div id="header-div">
-            <h1>Calculator</h1>
+            Calculator
         </div>
         <div id="calculator-div">
             <div id="screen">
                 <div id="screen-input"> </div>
+                <div id="last-number"></div>
             </div>
             <div id="buttons">
                 <button class="operators button">^</button>
@@ -30,7 +32,7 @@
                 <button class="numbers button">8</button>
                 <button class="numbers button">9</button>
                 <button class="operators button">*</button>
-                <button class="operators button">.</button>
+                <button class="numbers button">.</button>
                 <button class="numbers button">0</button>
                 <button id="equals" class="button">=</button>
                 <button class="operators button">/</button>
@@ -38,6 +40,11 @@
         </div>
         <div id="footer-div">
         </div>
+
+        <style>
+            @import url('https://fonts.cdnfonts.com/css/calculator');
+        </style>
+
         <script src="scripts.js">
         </script>
     </body>

@@ -35,20 +35,26 @@ function operate(op, a, b){
     }
     if (op == '/'){
         if (b == 0){
-            return 'Ya sure?'
+            alert('You know better than that...')
+            clear();
         }
+        else {
         return divide(a, b);
+        }
     }
     if (op == '^'){
         return exponent(a, b);
     }
 };
 
-function clear() {
+function clear(all = 0) {
     firstArg = '';
     secondArg = '';
     selectedOperator = '';
-    screenInput.textContent = '';
+    if (all == 0){
+        screenInput.textContent = '';
+        lastNumber.textContent = '';
+    }
 };
  
 const numbers = document.querySelectorAll('.numbers');
@@ -56,40 +62,61 @@ const screenInput = document.querySelector('#screen-input');
 
 numbers.forEach(number => {
     number.addEventListener('click', x => {
-        if (selectedOperator == ''){
-            firstArg += number.textContent;
-            screenInput.textContent = firstArg;
+        if (number.textContent == '.'){
+            if (!screenInput.textContent.includes('.')) {
+                if (selectedOperator == ''){
+                    firstArg += number.textContent;
+                    screenInput.textContent = firstArg;
+                }
+                else {
+                    secondArg += number.textContent;
+                    screenInput.textContent = secondArg;
+                    console.log('2nd')
+                }
+            }
         }
         else {
-            secondArg += number.textContent;
-            screenInput.textContent = secondArg;
-            console.log('2nd')
+            if (selectedOperator == ''){
+                firstArg += number.textContent;
+                screenInput.textContent = firstArg;
+            }
+            else {
+                secondArg += number.textContent;
+                screenInput.textContent = secondArg;
+                console.log('2nd')
+            }
         }
     });
 });
 
 const operators = document.querySelectorAll('.operators');
+const lastNumber = document.querySelector('#last-number');
 operators.forEach(operator => {
     operator.addEventListener('click', x => {
         if (selectedOperator != ''){
-            firstArg = operate(selectedOperator,parseInt(firstArg),parseInt(secondArg));
-            screenInput.textContent = firstArg;
+            firstArg = operate(selectedOperator,parseFloat(firstArg),parseFloat(secondArg));
+            screenInput.textContent = operator.textContent;
             secondArg = '';
         }
         selectedOperator = operator.textContent;
+        lastNumber.textContent = firstArg;
+        screenInput.textContent = operator.textContent;
     })
 });
 
 const equals = document.querySelector('#equals');
 equals.addEventListener('click', x => {
     if (secondArg == '') {
-        screenInput.textContent = `ANSWER: ${firstArg}`; 
+        screenInput.textContent = `ANSWER: ${firstArg}`;
+        lastNumber.textContent = firstArg; 
     }
     else {
-        firstArg = operate(selectedOperator,parseInt(firstArg),parseInt(secondArg));
+        firstArg = operate(selectedOperator,parseFloat(firstArg),parseFloat(secondArg));
         screenInput.textContent = `ANSWER: ${firstArg}`;
         selectedOperator = ''
+        lastNumber.textContent = firstArg;
     }
+    clear(1);
 });
 
 const clearButton = document.querySelector('#clear');
@@ -112,11 +139,11 @@ delButton.addEventListener('click', x => {
 const signs = document.querySelector('#sign');
 signs.addEventListener('click', x => {
     if (selectedOperator == ''){
-        firstArg = parseInt(firstArg) * -1;
+        firstArg = parseFloat(firstArg) * -1;
         screenInput.textContent = firstArg;
     }
     else {
-        secondArg = parseInt(secondArg) * -1;
+        secondArg = parseFloat(secondArg) * -1;
         screenInput.textContent = secondArg;
     }
 })
